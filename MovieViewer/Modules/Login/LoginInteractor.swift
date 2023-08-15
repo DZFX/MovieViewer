@@ -8,17 +8,19 @@
 import Foundation
 
 class LoginInteractor {
+    var userCredentials: UserCredentials
     let loginService: LoginRepoProtocol
     var loginError: Error?
 
-    init(loginService: LoginRepoProtocol) {
+    init(userCredentials: UserCredentials, loginService: LoginRepoProtocol) {
+        self.userCredentials = userCredentials
         self.loginService = loginService
     }
 }
 
 extension LoginInteractor: LoginInteractorInputProtocol {
-    func performLogin(with username: String, password: String) {
-        loginService.performLogin(with: username, password: password) { [weak self] result in
+    func performLogin() {
+        loginService.performLogin(with: userCredentials.username, password: userCredentials.password) { [weak self] result in
             switch result {
             case .success:
                 print("Logged In")

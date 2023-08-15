@@ -15,7 +15,7 @@ protocol LoginPresenterProtocol: AnyObject {
 }
 
 protocol LoginInteractorInputProtocol: AnyObject {
-    func performLogin(with username: String, password: String)
+    func performLogin()
 }
 
 protocol LoginInteractorOutputProtocol: AnyObject {

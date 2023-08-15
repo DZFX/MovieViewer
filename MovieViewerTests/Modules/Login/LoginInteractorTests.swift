@@ -11,18 +11,19 @@ import XCTest
 final class LoginInteractorTests: XCTestCase {
     func test_loginSucceeded() {
         let sut = makeSUT(withSuccessfulLogin: true)
-        sut.performLogin(with: "", password: "")
+        sut.performLogin()
         XCTAssertNil(sut.loginError)
     }
 
     func test_loginFailed() {
         let sut = makeSUT(withSuccessfulLogin: false)
-        sut.performLogin(with: "", password: "")
+        sut.performLogin()
         XCTAssertNotNil(sut.loginError)
     }
 
     func makeSUT(withSuccessfulLogin: Bool) -> LoginInteractor {
-        let sut = LoginInteractor(loginService: withSuccessfulLogin ? SuccessMockLoginRepo() : FailingMockLoginRepo())
+        let sut = LoginInteractor(userCredentials: UserCredentials(username: "", password: ""),
+                                  loginService: withSuccessfulLogin ? SuccessMockLoginRepo() : FailingMockLoginRepo())
         return sut
     }
 }
