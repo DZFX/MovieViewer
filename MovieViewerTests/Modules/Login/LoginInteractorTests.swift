@@ -28,13 +28,13 @@ final class LoginInteractorTests: XCTestCase {
 }
 
 struct MockError: Error {}
-class FailingMockLoginRepo: LoginRepo {
+class FailingMockLoginRepo: LoginRepoProtocol {
     func performLogin(with username: String, password: String, completionHandler: (Result<Void, Error>) -> Void) {
         completionHandler(.failure(MockError()))
     }
 }
 
-class SuccessMockLoginRepo: LoginRepo {
+class SuccessMockLoginRepo: LoginRepoProtocol {
     func performLogin(with username: String, password: String, completionHandler: (Result<Void, Error>) -> Void) {
         completionHandler(.success(()))
     }

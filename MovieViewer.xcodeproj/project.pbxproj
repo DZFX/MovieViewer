@@ -16,6 +16,7 @@
 		BF582FAA2A8B0A1C00B35710 /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF582FA92A8B0A1C00B35710 /* LoginInteractor.swift */; };
 		BF582FAC2A8B0ABD00B35710 /* LoginInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF582FAB2A8B0ABD00B35710 /* LoginInteractorTests.swift */; };
 		BF582FB12A8B0F9500B35710 /* UserCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF582FB02A8B0F9500B35710 /* UserCredentials.swift */; };
+		BF582FB32A8BF99A00B35710 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF582FB22A8BF99A00B35710 /* LoginPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +42,7 @@
 		BF582FA92A8B0A1C00B35710 /* LoginInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInteractor.swift; sourceTree = "<group>"; };
 		BF582FAB2A8B0ABD00B35710 /* LoginInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInteractorTests.swift; sourceTree = "<group>"; };
 		BF582FB02A8B0F9500B35710 /* UserCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCredentials.swift; sourceTree = "<group>"; };
+		BF582FB22A8BF99A00B35710 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				BF582F782A8B019800B35710 /* LoginViewController.swift */,
 				BF582FA62A8B06B300B35710 /* LoginContract.swift */,
 				BF582FA92A8B0A1C00B35710 /* LoginInteractor.swift */,
+				BF582FB22A8BF99A00B35710 /* LoginPresenter.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 			files = (
 				BF582F792A8B019800B35710 /* LoginViewController.swift in Sources */,
 				BF582FA72A8B06B300B35710 /* LoginContract.swift in Sources */,
+				BF582FB32A8BF99A00B35710 /* LoginPresenter.swift in Sources */,
 				BF582F752A8B019800B35710 /* AppDelegate.swift in Sources */,
 				BF582FAA2A8B0A1C00B35710 /* LoginInteractor.swift in Sources */,
 				BF582F772A8B019800B35710 /* SceneDelegate.swift in Sources */,

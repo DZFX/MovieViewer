@@ -7,25 +7,25 @@
 
 import Foundation
 
-protocol LoginView: AnyObject {
+protocol LoginViewProtocol: AnyObject {
 }
 
-protocol LoginPresenter: AnyObject {
-    func viewDidLoad(view: LoginView)
+protocol LoginPresenterProtocol: AnyObject {
+    func viewDidLoad(view: LoginViewProtocol)
 }
 
-protocol LoginInteractorInput: AnyObject {
+protocol LoginInteractorInputProtocol: AnyObject {
     func performLogin(with username: String, password: String)
 }
 
-protocol LoginInteractorOutput: AnyObject {
+protocol LoginInteractorOutputProtocol: AnyObject {
     func loginSucceeded()
     func loginFailed(with error: Error)
 }
 
-protocol LoginRouter: AnyObject {
+protocol LoginRouterProtocol: AnyObject {
 }
 
-protocol LoginRepo: AnyObject {
+protocol LoginRepoProtocol: AnyObject {
     func performLogin(with username: String, password: String, completionHandler: (Result<Void, Error>) -> Void)
 }
