@@ -12,12 +12,12 @@ final class LoginViewControllerTests: XCTestCase {
     func test_loadView() {
         let sut = makeSUT()
         XCTAssert(sut.usernameText == "")
-        XCTAssert(sut.passwordText == "")
+        XCTAssertNil(sut.passwordTextField.superview)
         XCTAssertNil(sut.errorLabel.superview)
         XCTAssertNil(sut.loginButton.superview)
         sut.loadViewIfNeeded()
         XCTAssert(sut.usernameText == "user")
-        XCTAssert(sut.passwordText == "pass")
+        XCTAssertNotNil(sut.passwordTextField.superview)
         XCTAssertNotNil(sut.errorLabel.superview)
         XCTAssertNotNil(sut.loginButton.superview)
     }
@@ -37,8 +37,8 @@ private extension LoginViewController {
 
 private class MockLoginPresenter: LoginPresenterProtocol {
     func viewDidLoad(view: MovieViewer.LoginViewProtocol) {
-        view.prefill(with: "user", password: "pass")
-        view.finished(with: nil)
+        view.loaded(username: "user")
+        view.finishedLogin(with: nil)
         view.updateLoginStatus(enabled: false)
     }
 }

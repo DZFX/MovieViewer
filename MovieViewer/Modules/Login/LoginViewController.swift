@@ -66,13 +66,12 @@ class LoginViewController: UIViewController {
 }
 
 extension LoginViewController: LoginViewProtocol {
-    func finished(with error: Error?) {
-        errorLabel.text = error?.localizedDescription
-    }
-
-    func prefill(with username: String, password: String) {
+    func loaded(username: String) {
         usernameTextField.text = username
-        passwordTextField.text = password
+    }
+    
+    func finishedLogin(with error: Error?) {
+        errorLabel.text = error?.localizedDescription
     }
 
     func updateLoginStatus(enabled: Bool) {

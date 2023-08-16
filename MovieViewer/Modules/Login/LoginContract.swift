@@ -22,9 +22,9 @@ enum LoginError: Error {
 }
 
 protocol LoginViewProtocol: AnyObject {
-    func prefill(with username: String, password: String)
+    func loaded(username: String)
     func updateLoginStatus(enabled: Bool)
-    func finished(with error: Error?)
+    func finishedLogin(with error: Error?)
 }
 
 protocol LoginPresenterProtocol: AnyObject {
