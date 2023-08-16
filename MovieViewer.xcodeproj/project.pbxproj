@@ -19,6 +19,7 @@
 		BF582FB32A8BF99A00B35710 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF582FB22A8BF99A00B35710 /* LoginPresenter.swift */; };
 		BF582FB52A8C04EC00B35710 /* LoginPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF582FB42A8C04EC00B35710 /* LoginPresenterTests.swift */; };
 		BF582FB72A8C612700B35710 /* LoginViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF582FB62A8C612700B35710 /* LoginViewControllerTests.swift */; };
+		BF582FBA2A8C66DE00B35710 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF582FB92A8C66DE00B35710 /* UIViewExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		BF582FB22A8BF99A00B35710 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		BF582FB42A8C04EC00B35710 /* LoginPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenterTests.swift; sourceTree = "<group>"; };
 		BF582FB62A8C612700B35710 /* LoginViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerTests.swift; sourceTree = "<group>"; };
+		BF582FB92A8C66DE00B35710 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 		BF582F732A8B019800B35710 /* MovieViewer */ = {
 			isa = PBXGroup;
 			children = (
+				BF582FB82A8C66CD00B35710 /* Extensions */,
 				BF582FAF2A8B0F7A00B35710 /* Entities */,
 				BF582FA82A8B06B800B35710 /* Modules */,
 				BF582FA52A8B060500B35710 /* App */,
@@ -158,6 +161,14 @@
 				BF582FB02A8B0F9500B35710 /* UserCredentials.swift */,
 			);
 			path = Entities;
+			sourceTree = "<group>";
+		};
+		BF582FB82A8C66CD00B35710 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				BF582FB92A8C66DE00B35710 /* UIViewExtensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,6 +273,7 @@
 			files = (
 				BF582F792A8B019800B35710 /* LoginViewController.swift in Sources */,
 				BF582FA72A8B06B300B35710 /* LoginContract.swift in Sources */,
+				BF582FBA2A8C66DE00B35710 /* UIViewExtensions.swift in Sources */,
 				BF582FB32A8BF99A00B35710 /* LoginPresenter.swift in Sources */,
 				BF582F752A8B019800B35710 /* AppDelegate.swift in Sources */,
 				BF582FAA2A8B0A1C00B35710 /* LoginInteractor.swift in Sources */,

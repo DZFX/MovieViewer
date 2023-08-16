@@ -55,12 +55,12 @@ class LoginViewController: UIViewController {
         contentView.alignment = .center
         contentView.axis = .vertical
         contentView.spacing = 8
+        view.addSubview(contentView)
         contentView.centerInSuperview()
         contentView.addArrangedSubview(usernameTextField)
         contentView.addArrangedSubview(passwordTextField)
         contentView.addArrangedSubview(loginButton)
         contentView.addArrangedSubview(errorLabel)
-        view.addSubview(contentView)
         view.backgroundColor = .systemGray6
     }
 }
@@ -77,22 +77,5 @@ extension LoginViewController: LoginViewProtocol {
 
     func updateLoginStatus(enabled: Bool) {
         loginButton.isEnabled = enabled
-    }
-}
-
-extension UIView {
-    func centerHorizontally(offset: Double = 0.0) {
-        guard let superview = superview else { return }
-        centerXAnchor.constraint(equalTo: superview.centerXAnchor, constant: offset).isActive = true
-    }
-
-    func centerVertically(offset: Double = 0.0) {
-        guard let superview = superview else { return }
-        centerYAnchor.constraint(equalTo: superview.centerYAnchor, constant: offset).isActive = true
-    }
-
-    func centerInSuperview() {
-        centerHorizontally()
-        centerVertically()
     }
 }
