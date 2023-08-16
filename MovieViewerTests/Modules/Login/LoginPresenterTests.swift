@@ -36,6 +36,8 @@ final class LoginPresenterTests: XCTestCase {
 }
 
 class MockLoginInteractorInputProtocolImplementation: LoginInteractorInputProtocol {
+    var userCredentials: MovieViewer.UserCredentials = UserCredentials(username: "", password: "")
+    
     func performLogin() {
         
     }

@@ -50,3 +50,11 @@ extension LoginPresenter: LoginInteractorOutputProtocol {
         loginStatus = .loginFailed(error)
     }
 }
+
+extension LoginPresenter: LoginPresenterProtocol {
+    func viewDidLoad(view: LoginViewProtocol) {
+        view.prefill(with: loginInteractor.userCredentials.username, password: loginInteractor.userCredentials.password)
+        view.updateLoginStatus(enabled: false)
+        view.finished(with: nil)
+    }
+}
