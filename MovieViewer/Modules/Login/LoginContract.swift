@@ -5,7 +5,7 @@
 //  Created by Isaac Delgado on 14/08/23.
 //
 
-import Foundation
+import UIKit
 
 enum LoginError: Error {
     case wrongCredentials
@@ -42,6 +42,7 @@ protocol LoginInteractorOutputProtocol: AnyObject {
 }
 
 protocol LoginRouterProtocol: AnyObject {
+    func showLogin(window: UIWindow)
 }
 
 protocol LoginRepoProtocol: AnyObject {
