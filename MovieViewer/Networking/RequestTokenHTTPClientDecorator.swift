@@ -7,10 +7,10 @@
 
 import Foundation
 
-class RequestTokenCredentials: Codable {
-    let username: String?
-    let password: String?
-    let requestToken: String
+struct RequestTokenCredentials: Codable {
+    var username: String?
+    var password: String?
+    var requestToken: String
 
     enum CodingKeys: String, CodingKey {
         case username, password, requestToken = "request_token"

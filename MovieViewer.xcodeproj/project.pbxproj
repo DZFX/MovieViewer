@@ -27,6 +27,11 @@
 		BF582FC62A8CFF0600B35710 /* RequestTokenHTTPClientDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF582FC52A8CFF0600B35710 /* RequestTokenHTTPClientDecorator.swift */; };
 		BF582FCA2A8CFF9C00B35710 /* AuthorizedHTTPClientDecoratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF582FC92A8CFF9C00B35710 /* AuthorizedHTTPClientDecoratorTests.swift */; };
 		BF582FCC2A8D062C00B35710 /* RequestTokenHTTPClientDecoratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF582FCB2A8D062C00B35710 /* RequestTokenHTTPClientDecoratorTests.swift */; };
+		BF582FCE2A8D0F7500B35710 /* APIToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF582FCD2A8D0F7500B35710 /* APIToken.swift */; };
+		BF582FD02A8D141100B35710 /* RequestTokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF582FCF2A8D141100B35710 /* RequestTokenService.swift */; };
+		BF582FD22A8D156800B35710 /* CreateSessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF582FD12A8D156800B35710 /* CreateSessionService.swift */; };
+		BF582FD42A8D171200B35710 /* RetrieveSessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF582FD32A8D171200B35710 /* RetrieveSessionService.swift */; };
+		BF582FD82A8D219500B35710 /* LoginServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF582FD72A8D219500B35710 /* LoginServiceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +68,11 @@
 		BF582FC52A8CFF0600B35710 /* RequestTokenHTTPClientDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTokenHTTPClientDecorator.swift; sourceTree = "<group>"; };
 		BF582FC92A8CFF9C00B35710 /* AuthorizedHTTPClientDecoratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizedHTTPClientDecoratorTests.swift; sourceTree = "<group>"; };
 		BF582FCB2A8D062C00B35710 /* RequestTokenHTTPClientDecoratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTokenHTTPClientDecoratorTests.swift; sourceTree = "<group>"; };
+		BF582FCD2A8D0F7500B35710 /* APIToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIToken.swift; sourceTree = "<group>"; };
+		BF582FCF2A8D141100B35710 /* RequestTokenService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTokenService.swift; sourceTree = "<group>"; };
+		BF582FD12A8D156800B35710 /* CreateSessionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSessionService.swift; sourceTree = "<group>"; };
+		BF582FD32A8D171200B35710 /* RetrieveSessionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrieveSessionService.swift; sourceTree = "<group>"; };
+		BF582FD72A8D219500B35710 /* LoginServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginServiceTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +179,7 @@
 				BF582FAB2A8B0ABD00B35710 /* LoginInteractorTests.swift */,
 				BF582FB62A8C612700B35710 /* LoginViewControllerTests.swift */,
 				BF582FB42A8C04EC00B35710 /* LoginPresenterTests.swift */,
+				BF582FD72A8D219500B35710 /* LoginServiceTests.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -195,6 +206,8 @@
 				BF582FC02A8CFCC400B35710 /* HTTPClient.swift */,
 				BF582FC32A8CFED200B35710 /* AuthorizedHTTPClientDecorator.swift */,
 				BF582FC52A8CFF0600B35710 /* RequestTokenHTTPClientDecorator.swift */,
+				BF582FCD2A8D0F7500B35710 /* APIToken.swift */,
+				BF582FD52A8D17FA00B35710 /* APILoginService */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -206,6 +219,16 @@
 				BF582FCB2A8D062C00B35710 /* RequestTokenHTTPClientDecoratorTests.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		BF582FD52A8D17FA00B35710 /* APILoginService */ = {
+			isa = PBXGroup;
+			children = (
+				BF582FCF2A8D141100B35710 /* RequestTokenService.swift */,
+				BF582FD12A8D156800B35710 /* CreateSessionService.swift */,
+				BF582FD32A8D171200B35710 /* RetrieveSessionService.swift */,
+			);
+			path = APILoginService;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,16 +333,20 @@
 			files = (
 				BF582F792A8B019800B35710 /* LoginViewController.swift in Sources */,
 				BF582FA72A8B06B300B35710 /* LoginContract.swift in Sources */,
+				BF582FCE2A8D0F7500B35710 /* APIToken.swift in Sources */,
 				BF582FBA2A8C66DE00B35710 /* UIViewExtensions.swift in Sources */,
 				BF582FB32A8BF99A00B35710 /* LoginPresenter.swift in Sources */,
 				BF582F752A8B019800B35710 /* AppDelegate.swift in Sources */,
 				BF582FBC2A8C6C7600B35710 /* LoginRouter.swift in Sources */,
 				BF582FC62A8CFF0600B35710 /* RequestTokenHTTPClientDecorator.swift in Sources */,
 				BF582FC12A8CFCC400B35710 /* HTTPClient.swift in Sources */,
+				BF582FD02A8D141100B35710 /* RequestTokenService.swift in Sources */,
+				BF582FD42A8D171200B35710 /* RetrieveSessionService.swift in Sources */,
 				BF582FAA2A8B0A1C00B35710 /* LoginInteractor.swift in Sources */,
 				BF582FBE2A8CAB3E00B35710 /* LoginService.swift in Sources */,
 				BF582F772A8B019800B35710 /* SceneDelegate.swift in Sources */,
 				BF582FB12A8B0F9500B35710 /* UserCredentials.swift in Sources */,
+				BF582FD22A8D156800B35710 /* CreateSessionService.swift in Sources */,
 				BF582FC42A8CFED200B35710 /* AuthorizedHTTPClientDecorator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -331,6 +358,7 @@
 				BF582FB72A8C612700B35710 /* LoginViewControllerTests.swift in Sources */,
 				BF582FB52A8C04EC00B35710 /* LoginPresenterTests.swift in Sources */,
 				BF582FAC2A8B0ABD00B35710 /* LoginInteractorTests.swift in Sources */,
+				BF582FD82A8D219500B35710 /* LoginServiceTests.swift in Sources */,
 				BF582FCC2A8D062C00B35710 /* RequestTokenHTTPClientDecoratorTests.swift in Sources */,
 				BF582FCA2A8CFF9C00B35710 /* AuthorizedHTTPClientDecoratorTests.swift in Sources */,
 			);
