@@ -15,7 +15,7 @@ protocol RequestTokenServiceDelegate: AnyObject {
 struct RequestTokenServiceInvalidResponseError: Error {}
 
 class RequestTokenService {
-    var serviceURL = APIService.baseURL + "/authentication/session/new"
+    var serviceURL = APIService.baseURL + "/authentication/token/new"
     weak var delegate: RequestTokenServiceDelegate?
 
     init(delegate: RequestTokenServiceDelegate) {
@@ -28,11 +28,11 @@ class RequestTokenService {
                                            cachePolicy: .useProtocolCachePolicy)) { [weak self] result in
             switch result {
             case .success(let success):
-                guard let data = success.0, success.1.statusCode == 200 else {
-                    self?.delegate?.failed(with: RequestTokenServiceInvalidResponseError())
-                    return
-                }
                 do {
+                    guard let data = success.0, success.1.statusCode == 200 else {
+                        self?.delegate?.failed(with: try APIService.handleFailedResponse(data: success.0, response: success.1))
+                        return
+                    }
                     let requestTokenResponse = try JSONDecoder().decode(RequestTokenResponse.self, from: data)
                     self?.delegate?.succeeded(with: requestTokenResponse)
                 } catch {

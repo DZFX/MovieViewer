@@ -36,6 +36,12 @@ private extension LoginViewController {
 }
 
 private class MockLoginPresenter: LoginPresenterProtocol {
+    var isLoggingIn: Bool { false }
+    
+    func performLogin() {}
+    
+    func updateCredentials(username: String?, password: String?) {}
+    
     func viewDidLoad(view: MovieViewer.LoginViewProtocol) {
         view.loaded(username: "user")
         view.finishedLogin(with: nil)

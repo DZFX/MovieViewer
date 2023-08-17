@@ -28,17 +28,22 @@ protocol LoginViewProtocol: AnyObject {
 }
 
 protocol LoginPresenterProtocol: AnyObject {
+    var isLoggingIn: Bool { get }
     func viewDidLoad(view: LoginViewProtocol)
+    func updateCredentials(username: String?, password: String?)
+    func performLogin()
 }
 
 protocol LoginInteractorInputProtocol: AnyObject {
     var userCredentials: UserCredentials { get }
+    func setCredentials(username: String, password: String)
     func performLogin()
 }
 
 protocol LoginInteractorOutputProtocol: AnyObject {
     func loginSucceeded()
     func loginFailed(with error: Error)
+    func updateLoginStatus(enabled: Bool)
 }
 
 protocol LoginRouterProtocol: AnyObject {

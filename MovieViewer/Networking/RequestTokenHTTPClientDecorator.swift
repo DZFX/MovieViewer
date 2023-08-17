@@ -33,7 +33,8 @@ class RequestTokenHTTPClientDecorator: AuthorizedHTTPClientDecorator {
 
     override func execute(request: URLRequest, completion: @escaping (Result<(Data?, HTTPURLResponse), Error>) -> ()) {
         var requestTokenizedRequest = request
+        requestTokenizedRequest.httpMethod = "POST"
         requestTokenizedRequest.httpBody = try? JSONEncoder().encode(requestToken)
-        client.execute(request: requestTokenizedRequest, completion: completion)
+        super.execute(request: requestTokenizedRequest, completion: completion)
     }
 }

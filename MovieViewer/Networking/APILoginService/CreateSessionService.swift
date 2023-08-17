@@ -26,11 +26,11 @@ class CreateSessionService {
                                            cachePolicy: .useProtocolCachePolicy)) { [weak self] result in
             switch result {
             case .success(let success):
-                guard let data = success.0, success.1.statusCode == 200 else {
-                    self?.delegate?.failed(with: RequestTokenServiceInvalidResponseError())
-                    return
-                }
                 do {
+                    guard let data = success.0, success.1.statusCode == 200 else {
+                        self?.delegate?.failed(with: try APIService.handleFailedResponse(data: success.0, response: success.1))
+                        return
+                    }
                     let requestTokenResponse = try JSONDecoder().decode(RequestTokenResponse.self, from: data)
                     self?.delegate?.createdSession(with: requestTokenResponse)
                 } catch {
