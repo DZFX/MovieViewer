@@ -13,10 +13,10 @@ enum AppColors {
 
     static let backgroundGradient: CAGradientLayer = {
         let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [backgroundDarkColor, backgroundLightColor]
-        gradientLayer.locations = [0.0, 0.8]
-        gradientLayer.startPoint = CGPoint(x: 0.4, y: 0.0)
-        gradientLayer.endPoint = CGPoint(x: 0.6, y: 1.0)
+        gradientLayer.colors = [backgroundDarkColor.cgColor, backgroundLightColor.cgColor]
+        gradientLayer.locations = [0.75, 1.0]
+        gradientLayer.startPoint = CGPoint(x: 0.6, y: 1.0)
+        gradientLayer.endPoint = CGPoint(x: 0.45, y: 0.0)
         return gradientLayer
     }()
 }

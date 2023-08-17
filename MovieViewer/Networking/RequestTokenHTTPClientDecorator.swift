@@ -24,6 +24,7 @@ struct RequestTokenCredentials: Codable {
 }
 
 class RequestTokenHTTPClientDecorator: AuthorizedHTTPClientDecorator {
+    static let contentTypeHeader = "Content-Type"
     let requestToken: RequestTokenCredentials
 
     init(client: HTTPClient, bearerToken: TokenProvider, requestToken: RequestTokenCredentials) {
@@ -33,6 +34,7 @@ class RequestTokenHTTPClientDecorator: AuthorizedHTTPClientDecorator {
 
     override func execute(request: URLRequest, completion: @escaping (Result<(Data?, HTTPURLResponse), Error>) -> ()) {
         var requestTokenizedRequest = request
+        requestTokenizedRequest.addValue("application/json", forHTTPHeaderField: RequestTokenHTTPClientDecorator.contentTypeHeader)
         requestTokenizedRequest.httpMethod = "POST"
         requestTokenizedRequest.httpBody = try? JSONEncoder().encode(requestToken)
         super.execute(request: requestTokenizedRequest, completion: completion)

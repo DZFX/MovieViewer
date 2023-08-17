@@ -43,7 +43,7 @@ struct CreateSessionResponse: Decodable {
     }
 }
 
-struct APIServiceError: Error, Decodable {
+struct APIServiceError: LocalizedError, Decodable {
     var success: Bool
     var statusCode: Int
     var statusMessage: String
@@ -53,7 +53,7 @@ struct APIServiceError: Error, Decodable {
         case statusMessage = "status_message"
     }
 
-    var localizedDescription: String { statusMessage }
+    var errorDescription: String? { statusMessage }
 }
 
 func guaranteeMainThread(work: @escaping () -> Void) {

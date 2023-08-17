@@ -28,6 +28,7 @@ class LoginViewController: UIViewController {
         field.placeholder = "Username"
         field.setHeightConstraint(constant: 45)
         field.sizeToFit()
+        field.delegate = self
         field.addTarget(self, action: #selector(LoginViewController.textFieldDidChange(textField:)), for: .editingChanged)
         return field
     }()
@@ -40,6 +41,7 @@ class LoginViewController: UIViewController {
         field.isSecureTextEntry = true
         field.setHeightConstraint(constant: 45)
         field.sizeToFit()
+        field.delegate = self
         field.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
         return field
     }()
@@ -58,10 +60,12 @@ class LoginViewController: UIViewController {
 
     lazy var errorLabel = {
         let label = UILabel()
+        label.textAlignment = .center
+        label.numberOfLines = 0
         label.textColor = .red
-        label.font = .systemFont(ofSize: 12)
+        label.font = .systemFont(ofSize: 11)
         label.sizeToFit()
-        label.setHeightConstraint(constant: 25)
+        label.setHeightConstraint(constant: 35)
         return label
     }()
 
@@ -75,7 +79,6 @@ class LoginViewController: UIViewController {
     }
 
     override func viewDidLoad() {
-        print("Loadede LoginViewController")
         super.viewDidLoad()
         setupViews()
         presenter.viewDidLoad(view: self)
@@ -86,7 +89,7 @@ class LoginViewController: UIViewController {
         contentView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(contentView)
         contentView.centerInSuperview()
-        contentView.addHorizontalPaddingWithSuperview(offset: 40)
+        contentView.addHorizontalPaddingWithSuperview(offset: 5)
         contentView.backgroundColor = .clear
         contentView.alignment = .center
         contentView.axis = .vertical
@@ -94,11 +97,11 @@ class LoginViewController: UIViewController {
         contentView.distribution = .fillProportionally
         contentView.addArrangedSubview(logoImageView)
         contentView.addArrangedSubview(usernameTextField)
-        usernameTextField.addHorizontalPaddingWithSuperview()
+        usernameTextField.addHorizontalPaddingWithSuperview(offset: 35)
         contentView.addArrangedSubview(passwordTextField)
-        passwordTextField.addHorizontalPaddingWithSuperview()
+        passwordTextField.addHorizontalPaddingWithSuperview(offset: 35)
         contentView.addArrangedSubview(loginButton)
-        loginButton.addHorizontalPaddingWithSuperview()
+        loginButton.addHorizontalPaddingWithSuperview(offset: 35)
         contentView.addArrangedSubview(errorLabel)
         errorLabel.addHorizontalPaddingWithSuperview()
         contentView.sizeToFit()
@@ -128,5 +131,17 @@ extension LoginViewController: LoginViewProtocol {
 
     func updateLoginStatus(enabled: Bool) {
         loginButton.isEnabled = enabled
+    }
+}
+
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == usernameTextField {
+            passwordTextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+            didTapLogin()
+        }
+        return true
     }
 }

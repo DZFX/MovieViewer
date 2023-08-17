@@ -13,6 +13,7 @@ protocol TokenProvider {
 
 class AuthorizedHTTPClientDecorator: HTTPClient {
     static let authorizationHeader = "Authorization"
+    static let acceptHeader = "Accept"
     let client: HTTPClient
     let bearerToken: TokenProvider
 
@@ -25,6 +26,7 @@ class AuthorizedHTTPClientDecorator: HTTPClient {
         var authorizedRequest = request
         authorizedRequest.allHTTPHeaderFields?.removeValue(forKey: AuthorizedHTTPClientDecorator.authorizationHeader)
         authorizedRequest.addValue("Bearer \(bearerToken.token)", forHTTPHeaderField: AuthorizedHTTPClientDecorator.authorizationHeader)
+        authorizedRequest.addValue("application/json", forHTTPHeaderField: AuthorizedHTTPClientDecorator.acceptHeader)
         client.execute(request: authorizedRequest, completion: completion)
     }
 }
