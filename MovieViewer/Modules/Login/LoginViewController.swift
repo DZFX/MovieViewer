@@ -47,13 +47,29 @@ class LoginViewController: UIViewController {
     }()
 
     lazy var loginButton = {
-        let button = ReactiveButton()
-        button.backgroundColor = .systemGreen
-        button.layer.cornerRadius = 2.0
-        button.titleLabel?.font = .systemFont(ofSize: 14, weight: .medium)
-        button.setTitle("Log in", for: .normal)
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        var config = UIButton.Configuration.filled()
+        config.buttonSize = .large
+        config.cornerStyle = .small
+        config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
+            var outgoing = incoming
+            outgoing.font = .systemFont(ofSize: 14, weight: .medium)
+            return outgoing
+          }
+        config.baseBackgroundColor = .systemGreen
+        config.title = "Log in"
+        
+      button.configurationUpdateHandler = { [unowned self] button in
+          var config = button.configuration
+          config?.showsActivityIndicator = self.presenter.isLoggingIn
+          config?.title = self.presenter.isLoggingIn ? "Logging in..." : "Log in"
+          button.isEnabled = !self.presenter.isLoggingIn
+          button.configuration = config
+        }
+        button.configuration = config
         button.setHeightConstraint(constant: 45)
-        button.sizeToFit()
+//        button.sizeToFit()
         button.addTarget(self, action: #selector(didTapLogin), for: .touchUpInside)
         return button
     }()
@@ -115,6 +131,8 @@ class LoginViewController: UIViewController {
     }
 
     @objc func didTapLogin() {
+        usernameTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
         loginButton.setNeedsUpdateConfiguration()
         presenter.performLogin()
     }
@@ -126,6 +144,7 @@ extension LoginViewController: LoginViewProtocol {
     }
     
     func finishedLogin(with error: Error?) {
+        loginButton.setNeedsUpdateConfiguration()
         errorLabel.text = error?.localizedDescription
     }
 
