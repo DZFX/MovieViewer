@@ -13,6 +13,14 @@ struct MovieCellModel {
     var rating: String
     var description: String
     var imageURL: String
+
+    init(movie: Movie) {
+        title = movie.title
+        date = movie.releaseDate.formatted(date: .abbreviated, time: .omitted)
+        rating = "★ \(movie.rating)"
+        description = movie.overview
+        imageURL = movie.posterPath
+    }
 }
 
 class MovieCell: UICollectionViewCell {

@@ -7,19 +7,32 @@
 
 import Foundation
 
+protocol MainGridInteractorProtocol {
+    func fetchMovies(for sourceIndex: Int, completion: @escaping (Result<[Movie], Error>) -> Void)
+}
+
 class MainGridPresenter {
+    let interactor: MainGridInteractorProtocol
     var title: String = "Movies"
     var categoryTitles: [String] = [
-        "Popular", "Top Rated", "On TV", "Airing Today"
+        "Popular", "Top Rated", "Now Playing", "Upcoming"
     ]
-    var items: [MovieCellModel] = [
-        MovieCellModel(title: "Sample", date: "Item date", rating: "★ Rating", description: "Show many times over", imageURL: "")
-    ]
+    var items: [MovieCellModel] = []
+
+    init(interactor: MainGridInteractorProtocol) {
+        self.interactor = interactor
+    }
 }
 
 extension MainGridPresenter: MainGridPresenterProtocol {
     func fetch(for categoryIndex: Int) {
-        // TODO: - Fetch items
-        print("Fetch \(categoryIndex)")
+        interactor.fetchMovies(for: categoryIndex) { [weak self] result in
+            switch result {
+            case .success(let movies):
+                self?.items = movies.map(MovieCellModel.init(movie:))
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
 }

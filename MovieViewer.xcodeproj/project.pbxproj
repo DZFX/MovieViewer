@@ -45,6 +45,7 @@
 		BF8888532A8F83260033C0E6 /* GetTopRatedMoviesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8888522A8F83260033C0E6 /* GetTopRatedMoviesService.swift */; };
 		BF8888552A8F83D50033C0E6 /* GetNowPlayingMoviesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8888542A8F83D50033C0E6 /* GetNowPlayingMoviesService.swift */; };
 		BF8888572A8F84580033C0E6 /* GetUpcomingMoviesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8888562A8F84580033C0E6 /* GetUpcomingMoviesService.swift */; };
+		BF8888592A8F85580033C0E6 /* MainGridInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8888582A8F85580033C0E6 /* MainGridInteractor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +100,7 @@
 		BF8888522A8F83260033C0E6 /* GetTopRatedMoviesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTopRatedMoviesService.swift; sourceTree = "<group>"; };
 		BF8888542A8F83D50033C0E6 /* GetNowPlayingMoviesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetNowPlayingMoviesService.swift; sourceTree = "<group>"; };
 		BF8888562A8F84580033C0E6 /* GetUpcomingMoviesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUpcomingMoviesService.swift; sourceTree = "<group>"; };
+		BF8888582A8F85580033C0E6 /* MainGridInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGridInteractor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,6 +288,7 @@
 				BF8888412A8F006A0033C0E6 /* MainGridViewController.swift */,
 				BF8888452A8F1CAA0033C0E6 /* Cell */,
 				BF8888432A8F14F70033C0E6 /* MainGridPresenter.swift */,
+				BF8888582A8F85580033C0E6 /* MainGridInteractor.swift */,
 			);
 			path = MainGrid;
 			sourceTree = "<group>";
@@ -438,6 +441,7 @@
 				BF8888552A8F83D50033C0E6 /* GetNowPlayingMoviesService.swift in Sources */,
 				BF88884F2A8F73B20033C0E6 /* GetPopularMoviesService.swift in Sources */,
 				BF582FC42A8CFED200B35710 /* AuthorizedHTTPClientDecorator.swift in Sources */,
+				BF8888592A8F85580033C0E6 /* MainGridInteractor.swift in Sources */,
 				BF8888422A8F006A0033C0E6 /* MainGridViewController.swift in Sources */,
 				BF8888572A8F84580033C0E6 /* GetUpcomingMoviesService.swift in Sources */,
 			);
