@@ -39,7 +39,7 @@ class LoginPresenter {
     var loginStatus: LoginStatus = .notLoggedIn
     let loginInteractor: LoginInteractorInputProtocol
     var isLoggingIn: Bool { loginStatus.isLoggingIn}
-    var router: LoginRouter
+    var router: LoginRouterProtocol
     weak var view: LoginViewProtocol?
 
     init(loginStatus: LoginStatus, loginInteractor: LoginInteractorInputProtocol, router: LoginRouter) {
@@ -76,7 +76,9 @@ extension LoginPresenter: LoginInteractorOutputProtocol {
 
 extension LoginPresenter: LoginPresenterProtocol {
     func goToMainGrid() {
-        router.showMainGrid()
+        if loginStatus.isLoggedIn {
+            router.showMainGrid(from: view)
+        }
     }
     
     func updateCredentials(username: String?, password: String?) {

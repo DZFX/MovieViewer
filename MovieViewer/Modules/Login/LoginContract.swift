@@ -34,7 +34,7 @@ protocol LoginInteractorOutputProtocol: AnyObject {
 }
 
 protocol LoginRouterProtocol: AnyObject {
-    func showMainGrid()
+    func showMainGrid(from view: LoginViewProtocol?)
 }
 
 

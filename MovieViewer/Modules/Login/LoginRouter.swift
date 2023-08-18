@@ -8,16 +8,12 @@
 import UIKit
 
 class LoginRouter {
-    weak var window: UIWindow?
-
-    init(window: UIWindow?) {
-        self.window = window
-    }
 }
 
 extension LoginRouter: LoginRouterProtocol {
-    func showMainGrid() {
+    func showMainGrid(from view: LoginViewProtocol?) {
+        guard let view = view as? UIViewController else { return }
         let mainGrid = UIViewController()
-        window?.rootViewController?.present(mainGrid, animated: true, completion: nil)
+        view.present(mainGrid, animated: true, completion: nil)
     }
 }
