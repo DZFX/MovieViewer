@@ -7,14 +7,6 @@
 
 import Foundation
 
-protocol MainGridInteractorProtocol {
-    func fetchMovies(for sourceIndex: Int, completion: @escaping (Result<[Movie], Error>) -> Void)
-}
-
-protocol MainGridViewProtocol: AnyObject {
-    func loadedNewMovies()
-}
-
 class MainGridPresenter {
     let interactor: MainGridInteractorProtocol
     var title: String = "Movies"
@@ -22,14 +14,35 @@ class MainGridPresenter {
         "Popular", "Top Rated", "Now Playing", "Upcoming"
     ]
     var items: [MovieCellModel] = []
+    var router: MainGridRouterProtocol
     weak var view: MainGridViewProtocol?
 
-    init(interactor: MainGridInteractorProtocol) {
+    init(interactor: MainGridInteractorProtocol, router: MainGridRouterProtocol) {
         self.interactor = interactor
+        self.router = router
+    }
+
+    func performLogOut() {
+        
+    }
+
+    func goToProfile() {
+        
     }
 }
 
 extension MainGridPresenter: MainGridPresenterProtocol {
+    func displayGridMenu() {
+        router.displayGridMenu(in: view, title: "What do you want to do?", actionTitles: ["Profile", "Log out"]) { [weak self] selectedAction in
+            switch selectedAction {
+            case "Profile":
+                self?.goToProfile()
+            default:
+                self?.performLogOut()
+            }
+        }
+    }
+    
     func viewDidLoad() {
         fetch(for: 0)
     }

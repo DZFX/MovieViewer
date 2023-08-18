@@ -20,7 +20,8 @@ extension LoginRouter: LoginRouterProtocol {
                     GetNowPlayingMoviesService(),
                     GetUpcomingMoviesService()
                 ]
-            )
+            ),
+            router: MainGridRouter()
         )
         let mainGrid = MainGridViewController(presenter: presenter)
         presenter.view = mainGrid

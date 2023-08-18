@@ -26,6 +26,7 @@ class NavigationController: UINavigationController {
         navigationBarAppearance.configureWithDefaultBackground()
         navigationBarAppearance.backgroundColor = AppColors.navigationBarColor
         navigationBarAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        navigationBar.tintColor = .white
         navigationBar.standardAppearance = navigationBarAppearance
         navigationBar.scrollEdgeAppearance = navigationBarAppearance
         modalPresentationStyle = .fullScreen

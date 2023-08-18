@@ -7,15 +7,6 @@
 
 import UIKit
 
-protocol MainGridPresenterProtocol {
-    var title: String { get }
-    var categoryTitles: [String] { get }
-    var items: [MovieCellModel] { get }
-
-    func viewDidLoad()
-    func fetch(for categoryIndex: Int)
-}
-
 class MainGridViewController: ViewController {
 
     let presenter: MainGridPresenterProtocol
@@ -59,6 +50,10 @@ class MainGridViewController: ViewController {
         title = presenter.title
         setupContent()
         presenter.viewDidLoad()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "list.dash"),
+                                                            style: .plain,
+                                                            target: self,
+                                                            action: #selector(openMenu))
     }
 
     private func setupContent() {
@@ -81,6 +76,10 @@ class MainGridViewController: ViewController {
 
     @objc func fetchData() {
         presenter.fetch(for: segmentControl.selectedSegmentIndex)
+    }
+
+    @objc func openMenu() {
+        presenter.displayGridMenu()
     }
 }
 

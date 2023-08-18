@@ -48,6 +48,8 @@
 		BF8888592A8F85580033C0E6 /* MainGridInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8888582A8F85580033C0E6 /* MainGridInteractor.swift */; };
 		BF88885B2A8F8FD90033C0E6 /* MovieCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF88885A2A8F8FD90033C0E6 /* MovieCellModel.swift */; };
 		BF88885D2A8F92C40033C0E6 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF88885C2A8F92C40033C0E6 /* ImageDownloader.swift */; };
+		BF88885F2A8F9ADE0033C0E6 /* MainGridContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF88885E2A8F9ADE0033C0E6 /* MainGridContract.swift */; };
+		BF8888612A8FA2160033C0E6 /* MainGridRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8888602A8FA2160033C0E6 /* MainGridRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +107,8 @@
 		BF8888582A8F85580033C0E6 /* MainGridInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGridInteractor.swift; sourceTree = "<group>"; };
 		BF88885A2A8F8FD90033C0E6 /* MovieCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCellModel.swift; sourceTree = "<group>"; };
 		BF88885C2A8F92C40033C0E6 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
+		BF88885E2A8F9ADE0033C0E6 /* MainGridContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGridContract.swift; sourceTree = "<group>"; };
+		BF8888602A8FA2160033C0E6 /* MainGridRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGridRouter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -290,10 +294,12 @@
 		BF8888402A8EFAAF0033C0E6 /* MainGrid */ = {
 			isa = PBXGroup;
 			children = (
+				BF88885E2A8F9ADE0033C0E6 /* MainGridContract.swift */,
 				BF8888452A8F1CAA0033C0E6 /* Cell */,
 				BF8888412A8F006A0033C0E6 /* MainGridViewController.swift */,
 				BF8888432A8F14F70033C0E6 /* MainGridPresenter.swift */,
 				BF8888582A8F85580033C0E6 /* MainGridInteractor.swift */,
+				BF8888602A8FA2160033C0E6 /* MainGridRouter.swift */,
 			);
 			path = MainGrid;
 			sourceTree = "<group>";
@@ -419,6 +425,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF8888612A8FA2160033C0E6 /* MainGridRouter.swift in Sources */,
 				BF88885B2A8F8FD90033C0E6 /* MovieCellModel.swift in Sources */,
 				BF582F792A8B019800B35710 /* LoginViewController.swift in Sources */,
 				BF8888492A8F1DC10033C0E6 /* ReusableIdentifier.swift in Sources */,
@@ -443,6 +450,7 @@
 				BF582FB12A8B0F9500B35710 /* UserCredentials.swift in Sources */,
 				BF8888472A8F1CE90033C0E6 /* MovieCell.swift in Sources */,
 				BF582FD22A8D156800B35710 /* CreateSessionService.swift in Sources */,
+				BF88885F2A8F9ADE0033C0E6 /* MainGridContract.swift in Sources */,
 				BF582FE02A8D54B700B35710 /* ViewController.swift in Sources */,
 				BF8888532A8F83260033C0E6 /* GetTopRatedMoviesService.swift in Sources */,
 				BF8888552A8F83D50033C0E6 /* GetNowPlayingMoviesService.swift in Sources */,
