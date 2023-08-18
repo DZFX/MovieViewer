@@ -13,10 +13,7 @@ class MainGridPresenter {
         "Popular", "Top Rated", "On TV", "Airing Today"
     ]
     var items: [MovieCellModel] = [
-        MovieCellModel(title: "Sample"),
-        MovieCellModel(title: "Items"),
-        MovieCellModel(title: "To"),
-        MovieCellModel(title: "Show")
+        MovieCellModel(title: "Sample", date: "Item date", rating: "★ Rating", description: "Show many times over", imageURL: "")
     ]
 }
 

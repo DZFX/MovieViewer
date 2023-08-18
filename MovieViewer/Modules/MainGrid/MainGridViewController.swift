@@ -21,12 +21,14 @@ class MainGridViewController: ViewController {
 
     private lazy var segmentControl = {
         let view = UISegmentedControl(items: presenter.categoryTitles)
+        view.selectedSegmentIndex = 0
         view.addTarget(self, action: #selector(fetchData), for: .valueChanged)
         return view
     }()
 
     private lazy var collectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        collectionView.backgroundColor = .clear
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(cellType: MovieCell.self)
@@ -54,11 +56,14 @@ class MainGridViewController: ViewController {
         contentView.backgroundColor = .clear
         contentView.axis = .vertical
         contentView.distribution = .fill
-        contentView.alignment = .fill
+        contentView.alignment = .center
+        contentView.spacing = 20
         view.addSubview(contentView)
         contentView.alignEdgesWithSuperview()
         contentView.addArrangedSubview(segmentControl)
+        segmentControl.addHorizontalPaddingWithSuperview(offset: 30)
         contentView.addArrangedSubview(collectionView)
+        collectionView.addHorizontalPaddingWithSuperview(offset: 25)
     }
 
     @objc func fetchData() {
@@ -82,4 +87,17 @@ extension MainGridViewController: UICollectionViewDataSource {
     }
 }
 
-extension MainGridViewController: UICollectionViewDelegate {}
+extension MainGridViewController: UICollectionViewDelegate {
+}
+
+extension MainGridViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        guard let flowLayout = collectionViewLayout as? UICollectionViewFlowLayout else { return .zero }
+        let emptySpace = flowLayout.minimumInteritemSpacing + flowLayout.sectionInset.left + flowLayout.sectionInset.right
+        let cellWidth = (collectionView.bounds.width - emptySpace) / 2
+        let height = cellWidth * 2
+        return CGSize(width: cellWidth, height: height)
+    }
+}

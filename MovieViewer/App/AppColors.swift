@@ -10,6 +10,7 @@ import UIKit
 enum AppColors {
     static let backgroundDarkColor = UIColor(red: 12/255, green: 21/255, blue: 26/255, alpha: 1)
     static let backgroundLightColor = UIColor(red: 36/255, green: 65/255, blue: 64/255, alpha: 1)
+    static let cellBackgroundColor = UIColor(red: 25/255, green: 39/255, blue: 45/255, alpha: 1)
 
     static let backgroundGradient: CAGradientLayer = {
         let gradientLayer = CAGradientLayer()
