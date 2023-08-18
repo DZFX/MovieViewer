@@ -10,11 +10,15 @@ import Foundation
 protocol GetMoviesServiceProtocol {
     var client: HTTPClient { get }
     var urlRequest: URLRequest { get }
-    func getMovies(completion: @escaping (Result<[Movie], Error>) -> Void)
+    func getMovies(completion: @escaping (Result<GetMoviesServiceResponse, Error>) -> Void)
 }
 
 extension GetMoviesServiceProtocol {
-    func getMovies(completion: @escaping (Result<[Movie], Error>) -> Void) {
+    func getMovies(completion: @escaping (Result<GetMoviesServiceResponse, Error>) -> Void) {
         client.execute(request: urlRequest, completion: completion)
     }
+}
+
+struct GetMoviesServiceResponse: Decodable {
+    var results: [Movie]
 }
