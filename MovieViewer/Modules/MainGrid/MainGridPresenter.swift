@@ -11,6 +11,10 @@ protocol MainGridInteractorProtocol {
     func fetchMovies(for sourceIndex: Int, completion: @escaping (Result<[Movie], Error>) -> Void)
 }
 
+protocol MainGridViewProtocol: AnyObject {
+    func loadedNewMovies()
+}
+
 class MainGridPresenter {
     let interactor: MainGridInteractorProtocol
     var title: String = "Movies"
@@ -18,6 +22,7 @@ class MainGridPresenter {
         "Popular", "Top Rated", "Now Playing", "Upcoming"
     ]
     var items: [MovieCellModel] = []
+    weak var view: MainGridViewProtocol?
 
     init(interactor: MainGridInteractorProtocol) {
         self.interactor = interactor
@@ -25,11 +30,19 @@ class MainGridPresenter {
 }
 
 extension MainGridPresenter: MainGridPresenterProtocol {
+    func viewDidLoad() {
+        fetch(for: 0)
+    }
+
     func fetch(for categoryIndex: Int) {
         interactor.fetchMovies(for: categoryIndex) { [weak self] result in
             switch result {
             case .success(let movies):
-                self?.items = movies.map(MovieCellModel.init(movie:))
+                let viewModels = movies.map(MovieCellModel.init(movie:))
+                self?.items = viewModels
+                guaranteeMainThread {
+                    self?.view?.loadedNewMovies()
+                }
             case .failure(let error):
                 print(error.localizedDescription)
             }

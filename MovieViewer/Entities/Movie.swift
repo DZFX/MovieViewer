@@ -10,7 +10,7 @@ import Foundation
 struct Movie: Codable {
     var posterPath: String
     var title: String
-    var releaseDate: Date
+    var releaseDate: String
     var rating: Double
     var overview: String
 

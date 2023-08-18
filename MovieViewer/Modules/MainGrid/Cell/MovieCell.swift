@@ -7,22 +7,6 @@
 
 import UIKit
 
-struct MovieCellModel {
-    var title: String
-    var date: String
-    var rating: String
-    var description: String
-    var imageURL: String
-
-    init(movie: Movie) {
-        title = movie.title
-        date = movie.releaseDate.formatted(date: .abbreviated, time: .omitted)
-        rating = "★ \(movie.rating)"
-        description = movie.overview
-        imageURL = movie.posterPath
-    }
-}
-
 class MovieCell: UICollectionViewCell {
     private lazy var imageView = {
         let imageView = UIImageView()

@@ -12,6 +12,7 @@ protocol MainGridPresenterProtocol {
     var categoryTitles: [String] { get }
     var items: [MovieCellModel] { get }
 
+    func viewDidLoad()
     func fetch(for categoryIndex: Int)
 }
 
@@ -57,6 +58,7 @@ class MainGridViewController: ViewController {
         super.viewDidLoad()
         title = presenter.title
         setupContent()
+        presenter.viewDidLoad()
     }
 
     private func setupContent() {
@@ -110,5 +112,11 @@ extension MainGridViewController: UICollectionViewDelegateFlowLayout {
         let cellWidth = (collectionView.bounds.width - emptySpace) / 2
         let height = cellWidth * 2
         return CGSize(width: cellWidth, height: height)
+    }
+}
+
+extension MainGridViewController: MainGridViewProtocol {
+    func loadedNewMovies() {
+        collectionView.reloadData()
     }
 }
