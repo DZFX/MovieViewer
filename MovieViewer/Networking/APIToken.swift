@@ -13,6 +13,7 @@ struct APIToken: TokenProvider {
 
 enum APIService {
     static let baseURL = "https://api.themoviedb.org/3"
+    static let resourcesURL = "https://image.tmdb.org/t/p/original"
 
     static func handleFailedResponse(data: Data?, response: HTTPURLResponse) throws -> APIServiceError {
         guard let data = data else {

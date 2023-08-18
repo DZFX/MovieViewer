@@ -19,7 +19,7 @@ struct MovieCellModel {
         date = MovieCellModel.formattedDate(from: movie.releaseDate)
         rating = "★ \(movie.rating)"
         description = movie.overview
-        imageURL = movie.posterPath
+        imageURL = APIService.resourcesURL + movie.posterPath
     }
 
     static func formattedDate(from string: String) -> String {

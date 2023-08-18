@@ -15,6 +15,6 @@ class GetNowPlayingMoviesService: GetMoviesServiceProtocol {
     init(client: HTTPClient = AuthorizedHTTPClientDecorator(client: URLSession.shared, bearerToken: APIToken())) {
         self.client = client
         urlRequest = URLRequest(url: URL(string: serviceURL)!,
-                                cachePolicy: .useProtocolCachePolicy)
+                                cachePolicy: .returnCacheDataElseLoad)
     }
 }

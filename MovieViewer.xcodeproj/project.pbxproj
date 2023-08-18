@@ -47,6 +47,7 @@
 		BF8888572A8F84580033C0E6 /* GetUpcomingMoviesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8888562A8F84580033C0E6 /* GetUpcomingMoviesService.swift */; };
 		BF8888592A8F85580033C0E6 /* MainGridInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8888582A8F85580033C0E6 /* MainGridInteractor.swift */; };
 		BF88885B2A8F8FD90033C0E6 /* MovieCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF88885A2A8F8FD90033C0E6 /* MovieCellModel.swift */; };
+		BF88885D2A8F92C40033C0E6 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF88885C2A8F92C40033C0E6 /* ImageDownloader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +104,7 @@
 		BF8888562A8F84580033C0E6 /* GetUpcomingMoviesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUpcomingMoviesService.swift; sourceTree = "<group>"; };
 		BF8888582A8F85580033C0E6 /* MainGridInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGridInteractor.swift; sourceTree = "<group>"; };
 		BF88885A2A8F8FD90033C0E6 /* MovieCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCellModel.swift; sourceTree = "<group>"; };
+		BF88885C2A8F92C40033C0E6 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,6 +246,7 @@
 				BF582FC52A8CFF0600B35710 /* RequestTokenHTTPClientDecorator.swift */,
 				BF582FCD2A8D0F7500B35710 /* APIToken.swift */,
 				BF582FD52A8D17FA00B35710 /* APILoginService */,
+				BF88885C2A8F92C40033C0E6 /* ImageDownloader.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -444,6 +447,7 @@
 				BF8888532A8F83260033C0E6 /* GetTopRatedMoviesService.swift in Sources */,
 				BF8888552A8F83D50033C0E6 /* GetNowPlayingMoviesService.swift in Sources */,
 				BF88884F2A8F73B20033C0E6 /* GetPopularMoviesService.swift in Sources */,
+				BF88885D2A8F92C40033C0E6 /* ImageDownloader.swift in Sources */,
 				BF582FC42A8CFED200B35710 /* AuthorizedHTTPClientDecorator.swift in Sources */,
 				BF8888592A8F85580033C0E6 /* MainGridInteractor.swift in Sources */,
 				BF8888422A8F006A0033C0E6 /* MainGridViewController.swift in Sources */,

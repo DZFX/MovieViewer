@@ -63,7 +63,11 @@ class MovieCell: UICollectionViewCell {
         dateLabel.text = viewModel.date
         ratingLabel.text = viewModel.rating
         descriptionLabel.text = viewModel.description
-        imageView.image = UIImage(named: "SamplePoster")
+        imageView.image = nil
+        imageView.setImage(from: viewModel.imageURL) { [weak self] image in
+            guard self?.titleLabel.text == viewModel.title else { return }
+            self?.imageView.image = image
+        }
     }
 
     private func setupContent() {

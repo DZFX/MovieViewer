@@ -7,8 +7,7 @@
 
 import UIKit
 
-class LoginRouter {
-}
+class LoginRouter {}
 
 extension LoginRouter: LoginRouterProtocol {
     func showMainGrid(from view: LoginViewProtocol?) {
