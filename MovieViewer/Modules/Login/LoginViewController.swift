@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: ViewController {
     let presenter: LoginPresenterProtocol
 
     lazy var logoImageView = {
@@ -119,9 +119,6 @@ class LoginViewController: UIViewController {
         contentView.addArrangedSubview(errorLabel)
         errorLabel.addHorizontalPaddingWithSuperview()
         contentView.sizeToFit()
-        let gradientLayer = AppColors.backgroundGradient
-        gradientLayer.frame = view.frame
-        view.layer.insertSublayer(gradientLayer, at: 0)
     }
 
     @objc func textFieldDidChange(textField: UITextField) {
