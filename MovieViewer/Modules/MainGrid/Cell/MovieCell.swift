@@ -27,21 +27,21 @@ class MovieCell: UICollectionViewCell {
     private lazy var titleLabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14)
-        label.textColor = .green
+        label.textColor = AppColors.green
         return label
     }()
 
     private lazy var dateLabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14)
-        label.textColor = .green
+        label.textColor = AppColors.green
         return label
     }()
 
     private lazy var ratingLabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14)
-        label.textColor = .green
+        label.textColor = AppColors.green
         label.textAlignment = .right
         return label
     }()
@@ -97,7 +97,7 @@ class MovieCell: UICollectionViewCell {
         verticalStack.addArrangedSubview(imageView)
         imageView.heightAnchor.constraint(equalTo: verticalStack.heightAnchor, multiplier: 0.6).isActive = true
         verticalStack.addArrangedSubview(bottomVerticalStack)
-        bottomVerticalStack.addHorizontalPaddingWithSuperview(offset: 5)
+        bottomVerticalStack.addHorizontalPaddingWithSuperview(offset: 10)
         bottomVerticalStack.addArrangedSubview(titleLabel)
         bottomVerticalStack.addArrangedSubview(horizontalStack)
         horizontalStack.addArrangedSubview(dateLabel)

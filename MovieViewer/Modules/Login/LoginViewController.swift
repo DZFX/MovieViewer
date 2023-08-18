@@ -55,7 +55,7 @@ class LoginViewController: ViewController {
             outgoing.font = .systemFont(ofSize: 14, weight: .medium)
             return outgoing
           }
-        config.baseBackgroundColor = .systemGreen
+        config.baseBackgroundColor = AppColors.green
         config.title = "Log in"
         
       button.configurationUpdateHandler = { [weak self] button in

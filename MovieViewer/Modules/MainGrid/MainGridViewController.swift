@@ -21,6 +21,15 @@ class MainGridViewController: ViewController {
 
     private lazy var segmentControl = {
         let view = UISegmentedControl(items: presenter.categoryTitles)
+        view.selectedSegmentTintColor = AppColors.selectedControlColor
+        view.setTitleTextAttributes([
+            NSAttributedString.Key.foregroundColor : UIColor.white,
+            NSAttributedString.Key.font : UIFont.systemFont(ofSize: 12.5)
+        ], for: .normal)
+        view.setTitleTextAttributes([
+            NSAttributedString.Key.foregroundColor : UIColor.white,
+            NSAttributedString.Key.font : UIFont.systemFont(ofSize: 12.5)
+        ], for: .selected)
         view.selectedSegmentIndex = 0
         view.addTarget(self, action: #selector(fetchData), for: .valueChanged)
         return view
@@ -59,11 +68,13 @@ class MainGridViewController: ViewController {
         contentView.alignment = .center
         contentView.spacing = 20
         view.addSubview(contentView)
-        contentView.alignEdgesWithSuperview()
+        contentView.alignTopSpaceWithSuperview(offset: 10)
+        contentView.alignBottomSpaceWithSuperview()
+        contentView.addHorizontalPaddingWithSuperview()
         contentView.addArrangedSubview(segmentControl)
-        segmentControl.addHorizontalPaddingWithSuperview(offset: 30)
+        segmentControl.addHorizontalPaddingWithSuperview(offset: 25)
         contentView.addArrangedSubview(collectionView)
-        collectionView.addHorizontalPaddingWithSuperview(offset: 25)
+        collectionView.addHorizontalPaddingWithSuperview(offset: 15)
     }
 
     @objc func fetchData() {
