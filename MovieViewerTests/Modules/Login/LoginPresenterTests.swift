@@ -30,7 +30,9 @@ final class LoginPresenterTests: XCTestCase {
     }
 
     func makeSUT() -> LoginPresenter {
-        let sut = LoginPresenter(loginStatus: .notLoggedIn, loginInteractor: MockLoginInteractorInputProtocolImplementation())
+        let sut = LoginPresenter(loginStatus: .notLoggedIn,
+                                 loginInteractor: MockLoginInteractorInputProtocolImplementation(),
+                                 router: LoginRouter(window: nil))
         return sut
     }
 }

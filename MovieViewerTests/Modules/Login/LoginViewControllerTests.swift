@@ -36,6 +36,8 @@ private extension LoginViewController {
 }
 
 private class MockLoginPresenter: LoginPresenterProtocol {
+    func goToMainGrid() {}
+    
     var isLoggingIn: Bool { false }
     
     func performLogin() {}

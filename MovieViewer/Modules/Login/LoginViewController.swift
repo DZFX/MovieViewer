@@ -27,7 +27,6 @@ class LoginViewController: UIViewController {
         field.font = .systemFont(ofSize: 14)
         field.placeholder = "Username"
         field.setHeightConstraint(constant: 45)
-        field.sizeToFit()
         field.delegate = self
         field.addTarget(self, action: #selector(LoginViewController.textFieldDidChange(textField:)), for: .editingChanged)
         return field
@@ -40,7 +39,6 @@ class LoginViewController: UIViewController {
         field.placeholder = "Password"
         field.isSecureTextEntry = true
         field.setHeightConstraint(constant: 45)
-        field.sizeToFit()
         field.delegate = self
         field.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
         return field
@@ -60,7 +58,8 @@ class LoginViewController: UIViewController {
         config.baseBackgroundColor = .systemGreen
         config.title = "Log in"
         
-      button.configurationUpdateHandler = { [unowned self] button in
+      button.configurationUpdateHandler = { [weak self] button in
+          guard let self = self else { return }
           var config = button.configuration
           config?.showsActivityIndicator = self.presenter.isLoggingIn
           config?.title = self.presenter.isLoggingIn ? "Logging in..." : "Log in"
@@ -69,7 +68,6 @@ class LoginViewController: UIViewController {
         }
         button.configuration = config
         button.setHeightConstraint(constant: 45)
-//        button.sizeToFit()
         button.addTarget(self, action: #selector(didTapLogin), for: .touchUpInside)
         return button
     }()
@@ -146,6 +144,7 @@ extension LoginViewController: LoginViewProtocol {
     func finishedLogin(with error: Error?) {
         loginButton.setNeedsUpdateConfiguration()
         errorLabel.text = error?.localizedDescription
+        presenter.goToMainGrid()
     }
 
     func updateLoginStatus(enabled: Bool) {

@@ -7,20 +7,6 @@
 
 import UIKit
 
-enum LoginError: Error {
-    case wrongCredentials
-    case other(Error)
-
-    var localizedDescription: String {
-        switch self {
-        case .wrongCredentials:
-            return "Invalid username and/or password. You did not provide a valid login."
-        case .other(let error):
-            return error.localizedDescription
-        }
-    }
-}
-
 protocol LoginViewProtocol: AnyObject {
     func loaded(username: String)
     func updateLoginStatus(enabled: Bool)
@@ -32,6 +18,7 @@ protocol LoginPresenterProtocol: AnyObject {
     func viewDidLoad(view: LoginViewProtocol)
     func updateCredentials(username: String?, password: String?)
     func performLogin()
+    func goToMainGrid()
 }
 
 protocol LoginInteractorInputProtocol: AnyObject {
@@ -47,7 +34,7 @@ protocol LoginInteractorOutputProtocol: AnyObject {
 }
 
 protocol LoginRouterProtocol: AnyObject {
-    func showLogin(window: UIWindow)
+    func showMainGrid()
 }
 
 
