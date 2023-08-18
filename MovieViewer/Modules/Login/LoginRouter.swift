@@ -19,7 +19,9 @@ extension LoginRouter: LoginRouterProtocol {
                     GetTopRatedMoviesService(),
                     GetNowPlayingMoviesService(),
                     GetUpcomingMoviesService()
-                ]
+                ],
+                logoutService: DeleteSessionService(),
+                repo: UserDefaults.standard
             ),
             router: MainGridRouter()
         )

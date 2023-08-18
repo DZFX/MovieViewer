@@ -9,13 +9,15 @@ import Foundation
 
 class LoginInteractor {
     var userCredentials: UserCredentials
-    let loginService: LoginRepoProtocol
+    let loginService: LoginServiceProtocol
+    let repo: LoginRepoProtocol
     weak var interactorOutput: LoginInteractorOutputProtocol?
     var loginError: Error?
 
-    init(userCredentials: UserCredentials, loginService: LoginRepoProtocol) {
+    init(userCredentials: UserCredentials, loginService: LoginServiceProtocol, repo: LoginRepoProtocol) {
         self.userCredentials = userCredentials
         self.loginService = loginService
+        self.repo = repo
     }
 
     func validateCredentials() {
@@ -34,7 +36,8 @@ extension LoginInteractor: LoginInteractorInputProtocol {
     func performLogin() {
         loginService.performLogin(with: userCredentials.username, password: userCredentials.password) { [weak self] result in
             switch result {
-            case .success:
+            case .success(let sessionID):
+                self?.repo.set(sessionID: sessionID)
                 self?.interactorOutput?.loginSucceeded()
             case .failure(let error):
                 self?.loginError = error

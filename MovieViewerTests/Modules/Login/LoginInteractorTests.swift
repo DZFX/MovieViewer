@@ -23,20 +23,25 @@ final class LoginInteractorTests: XCTestCase {
 
     func makeSUT(withSuccessfulLogin: Bool) -> LoginInteractor {
         let sut = LoginInteractor(userCredentials: UserCredentials(username: "", password: ""),
-                                  loginService: withSuccessfulLogin ? SuccessMockLoginRepo() : FailingMockLoginRepo())
+                                  loginService: withSuccessfulLogin ? SuccessMockLoginService() : FailingMockLoginService(),
+                                  repo: LoginRepoProtocolMock())
         return sut
     }
 }
 
 struct MockError: Error {}
-class FailingMockLoginRepo: LoginRepoProtocol {
+class FailingMockLoginService: LoginServiceProtocol {
     func performLogin(with username: String, password: String, completionHandler: @escaping LoginServiceResult) {
         completionHandler(.failure(MockError()))
     }
 }
 
-class SuccessMockLoginRepo: LoginRepoProtocol {
+class SuccessMockLoginService: LoginServiceProtocol {
     func performLogin(with username: String, password: String, completionHandler: @escaping LoginServiceResult) {
         completionHandler(.success(""))
     }
+}
+
+class LoginRepoProtocolMock: LoginRepoProtocol {
+    func set(sessionID: String) {}
 }

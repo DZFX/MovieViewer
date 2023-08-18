@@ -13,7 +13,9 @@ protocol AppRouterProtocol {
 
 class AppRouter {
     func showLogin(window: UIWindow?) {
-        let interactor = LoginInteractor(userCredentials: UserCredentials(username: "", password: ""), loginService: LoginService())
+        let interactor = LoginInteractor(userCredentials: UserCredentials(username: "", password: ""),
+                                         loginService: LoginService(),
+                                         repo: UserDefaults.standard)
         let presenter = LoginPresenter(loginStatus: .notLoggedIn, loginInteractor: interactor, router: LoginRouter())
         interactor.interactorOutput = presenter
         let view = LoginViewController(presenter: presenter)

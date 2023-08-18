@@ -17,7 +17,7 @@ class LoginService {
     private var completionHandler: LoginServiceResult?
 }
 
-extension LoginService: LoginRepoProtocol {
+extension LoginService: LoginServiceProtocol {
     func performLogin(with username: String, password: String, completionHandler: @escaping LoginServiceResult) {
         requestTokenCredentials = RequestTokenCredentials(username: username, password: password, requestToken: "")
         self.completionHandler = completionHandler

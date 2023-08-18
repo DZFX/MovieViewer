@@ -11,6 +11,13 @@ class MainGridRouter {
 }
 
 extension MainGridRouter: MainGridRouterProtocol {
+    func returnToLogin(from view: MainGridViewProtocol?) {
+        guard let view = view as? UIViewController else { return }
+        view.parent?.dismiss(animated: true)
+    }
+    
+    func displayProfile(from view: MainGridViewProtocol?) {}
+    
     func displayGridMenu(in view: MainGridViewProtocol?, title: String, actionTitles: [String], selectedAction: @escaping (String) -> Void) {
         guard let view = view as? UIViewController else { return }
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)

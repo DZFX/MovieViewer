@@ -23,11 +23,20 @@ class MainGridPresenter {
     }
 
     func performLogOut() {
-        
+        interactor.performLogout { [weak self] result in
+            switch result {
+            case .success:
+                guaranteeMainThread {
+                    self?.router.returnToLogin(from: self?.view)
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
 
     func goToProfile() {
-        
+        router.displayProfile(from: self.view)
     }
 }
 

@@ -15,11 +15,11 @@ enum APIService {
     static let baseURL = "https://api.themoviedb.org/3"
     static let resourcesURL = "https://image.tmdb.org/t/p/original"
 
-    static func handleFailedResponse(data: Data?, response: HTTPURLResponse) throws -> APIServiceError {
+    static func handleFailedResponse(data: Data?, response: HTTPURLResponse) throws -> APIServiceResponse {
         guard let data = data else {
-            return APIServiceError(success: false, statusCode: response.statusCode, statusMessage: "Response status: \(response.statusCode)")
+            return APIServiceResponse(success: false, statusCode: response.statusCode, statusMessage: "Response status: \(response.statusCode)")
         }
-        let error = try JSONDecoder().decode(APIServiceError.self, from: data)
+        let error = try JSONDecoder().decode(APIServiceResponse.self, from: data)
         return error
     }
 }
@@ -44,7 +44,7 @@ struct CreateSessionResponse: Decodable {
     }
 }
 
-struct APIServiceError: LocalizedError, Decodable {
+struct APIServiceResponse: LocalizedError, Decodable {
     var success: Bool
     var statusCode: Int
     var statusMessage: String

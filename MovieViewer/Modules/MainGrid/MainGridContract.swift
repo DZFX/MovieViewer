@@ -19,6 +19,7 @@ protocol MainGridPresenterProtocol {
 
 protocol MainGridInteractorProtocol {
     func fetchMovies(for sourceIndex: Int, completion: @escaping (Result<[Movie], Error>) -> Void)
+    func performLogout(completion: @escaping (Result<Void, Error>) -> Void)
 }
 
 protocol MainGridViewProtocol: AnyObject {
@@ -27,4 +28,10 @@ protocol MainGridViewProtocol: AnyObject {
 
 protocol MainGridRouterProtocol {
     func displayGridMenu(in view: MainGridViewProtocol?, title: String, actionTitles: [String], selectedAction: @escaping (String) -> Void)
+    func returnToLogin(from view: MainGridViewProtocol?)
+    func displayProfile(from view: MainGridViewProtocol?)
+}
+
+protocol MainGridRepoProtocol {
+    var storedSessionID: SessionID { get }
 }

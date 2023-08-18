@@ -8,13 +8,20 @@
 import Foundation
 
 struct MainGridInteractorServiceError: Error {}
-class MainGridInteractor: MainGridInteractorProtocol {
+class MainGridInteractor {
+    
     var services: [GetMoviesServiceProtocol]
+    var logoutService: LogoutServiceProtocol
+    var repo: MainGridRepoProtocol
 
-    init(services: [GetMoviesServiceProtocol]) {
+    init(services: [GetMoviesServiceProtocol], logoutService: LogoutServiceProtocol, repo: MainGridRepoProtocol) {
         self.services = services
+        self.logoutService = logoutService
+        self.repo = repo
     }
+}
 
+extension MainGridInteractor: MainGridInteractorProtocol {
     func fetchMovies(for sourceIndex: Int, completion: @escaping (Result<[Movie], Error>) -> Void) {
         guard sourceIndex < services.count else {
             return completion(.failure(MainGridInteractorServiceError()))
@@ -27,5 +34,9 @@ class MainGridInteractor: MainGridInteractorProtocol {
                 completion(.failure(error))
             }
         }
+    }
+
+    func performLogout(completion: @escaping (Result<Void, Error>) -> Void) {
+        logoutService.performLogout(with: repo.storedSessionID, completion: completion)
     }
 }

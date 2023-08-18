@@ -41,6 +41,10 @@ protocol LoginRouterProtocol: AnyObject {
 typealias SessionID = String
 typealias LoginServiceResult = (Result<SessionID, Error>) -> Void
 
-protocol LoginRepoProtocol: AnyObject {
+protocol LoginServiceProtocol: AnyObject {
     func performLogin(with username: String, password: String, completionHandler: @escaping LoginServiceResult)
+}
+
+protocol LoginRepoProtocol: AnyObject {
+    func set(sessionID: String)
 }

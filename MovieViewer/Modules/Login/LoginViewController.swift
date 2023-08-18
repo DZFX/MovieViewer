@@ -141,6 +141,8 @@ extension LoginViewController: LoginViewProtocol {
     func finishedLogin(with error: Error?) {
         loginButton.setNeedsUpdateConfiguration()
         errorLabel.text = error?.localizedDescription
+        passwordTextField.text = ""
+        textFieldDidChange(textField: passwordTextField)
         presenter.goToMainGrid()
     }
 
