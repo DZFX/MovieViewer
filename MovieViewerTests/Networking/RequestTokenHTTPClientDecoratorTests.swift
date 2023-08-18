@@ -15,12 +15,12 @@ final class RequestTokenHTTPClientDecoratorTests: XCTestCase {
         let startRequest = URLRequest(url: URL(fileURLWithPath: ""))
         XCTAssertNil(startRequest.httpBody)
         let expectation = XCTestExpectation(description: "Test authorized request")
-        sut.execute(request: startRequest) { result in
+        sut.execute(request: startRequest) { (result: Result<Data, Error>) in
             switch result {
-            case .success(let success):
+            case .success(let data):
                 do {
-                    let data: Data = try XCTUnwrap(success.0)
-                    XCTAssertEqual((try JSONDecoder().decode(RequestTokenCredentials.self, from: data)).requestToken, "Test Request Token")
+                    let token = (try JSONDecoder().decode(RequestTokenCredentials.self, from: data)).requestToken
+                    XCTAssertEqual(token, "Test Request Token")
                     expectation.fulfill()
                 } catch {
                     XCTFail(error.localizedDescription)
@@ -37,11 +37,10 @@ final class RequestTokenHTTPClientDecoratorTests: XCTestCase {
         let startRequest = URLRequest(url: URL(fileURLWithPath: ""))
         XCTAssertNil(startRequest.httpBody)
         let expectation = XCTestExpectation(description: "Test authorized request")
-        sut.execute(request: startRequest) { result in
+        sut.execute(request: startRequest) { (result: Result<Data, Error>) in
             switch result {
-            case .success(let success):
+            case .success(let data):
                 do {
-                    let data: Data = try XCTUnwrap(success.0)
                     let tokenCredentials = try JSONDecoder().decode(RequestTokenCredentials.self, from: data)
                     XCTAssertEqual(tokenCredentials.requestToken, "Test Request Token")
                     XCTAssertEqual(tokenCredentials.username, "user")
@@ -58,11 +57,17 @@ final class RequestTokenHTTPClientDecoratorTests: XCTestCase {
     }
 
     func makeSUT(with username: String? = nil, password: String? = nil) -> RequestTokenHTTPClientDecorator {
-        let sut = RequestTokenHTTPClientDecorator(client: MockSuccessHTTPClient(),
+        let sut = RequestTokenHTTPClientDecorator(client: MockSuccessTokenClient(),
                                                   bearerToken: MockTokenProvider(),
                                                   requestToken: RequestTokenCredentials(username: username,
                                                                                         password: password,
                                                                                         requestToken: "Test Request Token"))
         return sut
+    }
+}
+
+struct MockSuccessTokenClient: HTTPClient {
+    func execute<T>(request: URLRequest, completion: @escaping (Result<T, Error>) -> Void) where T : Decodable {
+        completion(.success(request.httpBody as! T))
     }
 }

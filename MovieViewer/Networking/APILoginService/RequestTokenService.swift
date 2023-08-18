@@ -25,19 +25,10 @@ class RequestTokenService {
     func getRequestToken() {
         let client = AuthorizedHTTPClientDecorator(client: URLSession.shared, bearerToken: APIToken())
         client.execute(request: URLRequest(url: URL(string: serviceURL)!,
-                                           cachePolicy: .useProtocolCachePolicy)) { [weak self] result in
+                                           cachePolicy: .useProtocolCachePolicy)) { [weak self] (result: Result<RequestTokenResponse, Error>) in
             switch result {
-            case .success(let success):
-                do {
-                    guard let data = success.0, success.1.statusCode == 200 else {
-                        self?.delegate?.failed(with: try APIService.handleFailedResponse(data: success.0, response: success.1))
-                        return
-                    }
-                    let requestTokenResponse = try JSONDecoder().decode(RequestTokenResponse.self, from: data)
-                    self?.delegate?.succeeded(with: requestTokenResponse)
-                } catch {
-                    self?.delegate?.failed(with: error)
-                }
+            case .success(let response):
+                self?.delegate?.succeeded(with: response)
             case .failure(let failure):
                 self?.delegate?.failed(with: failure)
             }

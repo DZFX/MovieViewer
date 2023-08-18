@@ -32,7 +32,7 @@ class RequestTokenHTTPClientDecorator: AuthorizedHTTPClientDecorator {
         super.init(client: client, bearerToken: bearerToken)
     }
 
-    override func execute(request: URLRequest, completion: @escaping (Result<(Data?, HTTPURLResponse), Error>) -> ()) {
+    override func execute<T>(request: URLRequest, completion: @escaping (Result<T, Error>) -> Void) where T : Decodable {
         var requestTokenizedRequest = request
         requestTokenizedRequest.addValue("application/json", forHTTPHeaderField: RequestTokenHTTPClientDecorator.contentTypeHeader)
         requestTokenizedRequest.httpMethod = "POST"

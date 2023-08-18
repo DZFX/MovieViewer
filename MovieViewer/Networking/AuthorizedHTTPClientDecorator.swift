@@ -22,7 +22,7 @@ class AuthorizedHTTPClientDecorator: HTTPClient {
         self.bearerToken = bearerToken
     }
 
-    func execute(request: URLRequest, completion: @escaping (Result<(Data?, HTTPURLResponse), Error>) -> ()) {
+    func execute<T>(request: URLRequest, completion: @escaping (Result<T, Error>) -> Void) where T : Decodable {
         var authorizedRequest = request
         authorizedRequest.allHTTPHeaderFields?.removeValue(forKey: AuthorizedHTTPClientDecorator.authorizationHeader)
         authorizedRequest.addValue("Bearer \(bearerToken.token)", forHTTPHeaderField: AuthorizedHTTPClientDecorator.authorizationHeader)

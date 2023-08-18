@@ -8,18 +8,27 @@
 import Foundation
 
 protocol HTTPClient {
-    func execute(request: URLRequest, completion: @escaping (Result<(Data?, HTTPURLResponse), Error>) -> ())
+    func execute<T: Decodable>(request: URLRequest, completion: @escaping (Result<T, Error>) -> Void)
 }
 
 extension URLSession: HTTPClient {
     struct InvalidHTTPResponseError: Error {}
-    func execute(request: URLRequest, completion: @escaping (Result<(Data?, HTTPURLResponse), Error>) -> ()) {
+    func execute<T: Decodable>(request: URLRequest, completion: @escaping (Result<T, Error>) -> Void) {
         dataTask(with: request) { data, response, error in
             guard let httpResponse = response as? HTTPURLResponse else {
                 completion(.failure(InvalidHTTPResponseError()))
                 return
             }
-            completion(.success((data, httpResponse)))
+            do {
+                guard let data = data, httpResponse.statusCode == 200 else {
+                    completion(.failure(try APIService.handleFailedResponse(data: data, response: httpResponse)))
+                    return
+                }
+                let decodedModel = try JSONDecoder().decode(T.self, from: data)
+                completion(.success(decodedModel))
+            } catch {
+                completion(.failure(error))
+            }
         }
         .resume()
     }

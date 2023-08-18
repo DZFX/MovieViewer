@@ -15,10 +15,10 @@ final class AuthorizedHTTPClientDecoratorTests: XCTestCase {
         let startRequest = URLRequest(url: URL(fileURLWithPath: ""))
         XCTAssertNotEqual(startRequest.value(forHTTPHeaderField: AuthorizedHTTPClientDecorator.authorizationHeader), "Bearer Test Auth Token")
         let expectation = XCTestExpectation(description: "Test authorized request")
-        sut.execute(request: startRequest) { result in
+        sut.execute(request: startRequest) { (result: Result<String, Error>) in
             switch result {
             case .success(let success):
-                XCTAssertEqual(success.1.value(forHTTPHeaderField: AuthorizedHTTPClientDecorator.authorizationHeader), "Bearer Test Auth Token")
+                XCTAssertEqual(success, "Bearer Test Auth Token")
                 expectation.fulfill()
             case .failure:
                 XCTFail()
@@ -34,16 +34,13 @@ final class AuthorizedHTTPClientDecoratorTests: XCTestCase {
 }
 
 struct MockSuccessHTTPClient: HTTPClient {
-    func execute(request: URLRequest, completion: @escaping (Result<(Data?, HTTPURLResponse), Error>) -> ()) {
-        completion(.success((request.httpBody, HTTPURLResponse(url: URL(fileURLWithPath: ""),
-                                                                                          statusCode: 200,
-                                                                                          httpVersion: "",
-                                                                                          headerFields: request.allHTTPHeaderFields)!)))
+    func execute<T>(request: URLRequest, completion: @escaping (Result<T, Error>) -> Void) where T : Decodable {
+        completion(.success(request.value(forHTTPHeaderField: AuthorizedHTTPClientDecorator.authorizationHeader) as! T))
     }
 }
 
 struct MockFailHTTPClient: HTTPClient {
-    func execute(request: URLRequest, completion: @escaping (Result<(Data?, HTTPURLResponse), Error>) -> ()) {
+    func execute<T>(request: URLRequest, completion: @escaping (Result<T, Error>) -> Void) where T : Decodable {
         completion(.failure(MockError()))
     }
 }
